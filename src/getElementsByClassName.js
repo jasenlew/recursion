@@ -15,19 +15,23 @@ var getElementsByClassName = function(className){
 	//create recurseDOM function
 	function recurseDOM (node) {
 
-		//iterate over ClassList as element may have more than one class
-		for (var j = 0; j < node.classList.length; j += 1) {
+		//test to see if node has a class
+		if (node.classList !== undefined) {
 
-			// check if current node has class
-			if (node.classList[j] === className) {
-			
-				// if have class, then add node to arr
-				return arr.push(node);
+			//iterate over ClassList as element may have more than one class
+			for (var j = 0; j < node.classList.length; j += 1) {
+
+				// check if current node has class
+				if (node.classList[j] === className) {
+				
+					// if have class, then add node to arr
+					arr.push(node);
+				}
 			}
 		}
 
-		//need to check if node has children, i.e. may be null				
-		if (node.childNodes !== undefined) {
+		//need to check if node has children				
+		if (node.childNodes.length > 0) {
 
 			// iterate over all children and sibling
 			for (var i = 0; i < node.childNodes.length; i += 1) { //vs node.childElementCount			
@@ -40,46 +44,9 @@ var getElementsByClassName = function(className){
 		return arr;
 	}
 
-	recurseDOM(currentNode);
+	return recurseDOM(currentNode);
 };
 
-
-/*
-	//create recurseDOM function
-	function recurseDOM (node) {
-
-		// if no children
-		if (node.childNodes[0] === false) {
-
-			// check if current node has class
-			if (node.classList[0] === className) {
-		
-				// if have class, then return arr of node
-				return arr.push(node);
-
-			}
-		
-		// if have children
-		} else {
-
-			// get number of children to know how many to iterate over
-			var l = node.childNodes.length;
-
-			// iterate over all children
-			for (var i = 0; i < l; i += 1) {
-				//call recursive function
-				recurseDOM(node.childNodes[i]);
-			}
-		}
-
-		return arr;
-
-	}
-
-	recurseDOM(currentNode);
-
-};
-*/
 
 /*
 	function iterateDOM(node) {
