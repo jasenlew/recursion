@@ -54,6 +54,3 @@ var stringifyJSON = function(obj) {
   	return str;
   }
 };
-
-stringifyJSON(["apple", true, {"foo": true}]);
-// "["apple", true, {"foo": true}]"
